@@ -12,5 +12,8 @@
     "express": "^4.15.4",
     "lodash": "^4.17.4",
     "wpcom": "^5.4.0"
+  },
+  "scripts": {
+    "start": "node index.js"
   }
 }
