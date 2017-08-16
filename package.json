@@ -1,0 +1,16 @@
+{
+  "name": "a8cgmposts",
+  "version": "1.0.0",
+  "description": "a8cgm tag to posts",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "timmydcrawford@gmail.com",
+  "license": "WTFPL",
+  "dependencies": {
+    "express": "^4.15.4",
+    "lodash": "^4.17.4",
+    "wpcom": "^5.4.0"
+  }
+}
