@@ -6,6 +6,7 @@ const _ = require( 'lodash' );
 // Config stuffs
 const wpcom = require( 'wpcom' )( process.env.WPCOM_TOKEN );
 const siteUrl = 'a8cgmposts.wordpress.com';
+const siteID = 134185161;
 const site = wpcom.site( siteUrl );
 const lastUpdatedWidget = 'text-3';
 
@@ -28,7 +29,7 @@ app.get( '/', ( req, res ) => {
 		} )
 		.then( ( response ) => {
 			return new Promise( ( resolve, reject ) => {
-				
+
 				// If there is no data, or no posts, return.
 				if ( ! response || response.number === 0 ) {
 					resolve();
@@ -36,6 +37,15 @@ app.get( '/', ( req, res ) => {
 
 				// Create posts.
 				_.each( response.posts, ( post, i ) => {
+					// Only add new post if it is not coming from a8cgmposts
+					if ( post.site_ID !== siteID ) {
+						// if this is the last post, resolve promise.
+						if ( i === ( response.number - 1 ) ) {
+							resolve();
+						}
+						return;
+					}
+
 					// Pictures are neat, lets use either the featured image or attachments in the original post.
 					let photos = [];
 					if ( post.featured_image && post.featured_image.length ) {
